@@ -5,8 +5,7 @@ import Search from './components/Search';
 function App() {
   return (
     <div>
-      <Header />
-      <Search />
+      <h2 className="text-3xl font-bold underline">Hello World</h2>
     </div>
   );
 }
