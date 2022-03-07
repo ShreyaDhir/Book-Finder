@@ -1,19 +1,25 @@
-import React from 'react'
-import { Container, Navbar } from 'react-bootstrap'
+import React, {useState, useEffect} from 'react';
 
 const Header = () => {
+  const [isToggle, setIsToggle] = useState(false);
+
+  useEffect(() => {
+    setIsToggle(true);
+  },[])
+
   return (
-    <Navbar>
-      <Container>
-        <Navbar.Brand href="#home">Find Books</Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
+    <div className="bg-sky-200 w-full"> {/* Navbar */}
+      <div className="flex flex-row justify-between p-4 text-lg"> {/* Container */}
+        <div className="flex" href="#home">Find Books</div> {/* Logo */}
+        <div className="" /> {/* Menu Toggle */}
+        <div className="w-full">  {/* Menu Button */}
+          <ion-icon name="apps-outline"></ion-icon>
+          <div className="flex">  {/* Login */}
             Signed in as: <a href="#login">User Signed In</a>
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
