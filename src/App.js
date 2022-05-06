@@ -1,17 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import BookList from './components/BookList';
 import Header from './components/Header';
 import Search from './components/Search';
-import BooksApp from './components/Main';
+import './index.css'
 
 function App() {
   return (
-    <div className="h-screen w-full font-mono">
-      {/* <BooksApp /> */}
+    <main className="app-container">
       <Header />
       <Search />
-      {/* <BookList /> */}
-    </div>
+    </main>
   );
 }
 

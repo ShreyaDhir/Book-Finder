@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Button, Modal } from 'react-bootstrap'
+import { BiSearchAlt } from "react-icons/bi";
+import { GiBlackBook } from "react-icons/gi";
+
+import Landing from "./Landing";
 
 let API_URL = `https://www.googleapis.com/books/v1/volumes`;
 let API_KEY = `AIzaSyDJCvTsy60hDaYTnhMrB7i8Qm9LTJQgqRw`
@@ -8,11 +12,8 @@ let API_KEY = `AIzaSyDJCvTsy60hDaYTnhMrB7i8Qm9LTJQgqRw`
 const Search = () => {
   const [search, setSearch] = useState('');
   const [books, setBooks] = useState([]);
+  const [readMore, setReadMore] = useState(false);
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  // const [apiKey, setApiKey] = useState(`${API_KEY}`);
 
   const handleChange = (event) => {
     const search = event.target.value;
@@ -38,55 +39,53 @@ const Search = () => {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="relative p-36">
-        <h2 htmlFor="search">Search your books</h2>
+    <section className="hero-container">
+        <h2 className="hero-title">Search your books</h2>
         <form 
-          className="form-group flex border-0"
+          className="search-bar"
           onSubmit={handleSubmit}
         >
           <input
             type="search"
             placeholder="Search"
             onChange={handleChange}
-            className="form-control p-2 transition ease-in-out m-0 border-2 border-slate-200 rounded focus:text-gray-700 focus:bg-white focus:shadow-slate-100 focus:outline-none"
-          ></input>
+            className="input"
+          />
           <button 
             type="button" 
-            className="flex flex-row btn bg-blue-600"
+            className="hero-button"
           >
-            <ion-icon name="search"></ion-icon>
+            <BiSearchAlt />
           </button>
-        </form>
-
-        <section className="flex flex-wrap pt-24 basis-8">
+      </form>
+      <section className="book-container">
           {books.map(book => (
-          <section className="p-4" key={book.id}>
-              <img src={book.volumeInfo.imageLinks.smallThumbnail} alt={book.title}/>
-              <Button className="mt-4" variant="primary" onClick={handleShow}>
-                About the book
-              </Button>
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>{book.title}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-          </section>
+            <article className="book-display" key={book.id}>
+              <div className="book-content">
+                <img className="book-image" src={book.volumeInfo.imageLinks.smallThumbnail} alt={book.title} />
+                <div className="book-description">
+                  <h4 className="book-title">{book.volumeInfo.title}</h4>
+                  <p className="book-authors">{`${book.volumeInfo.authors}`}</p>
+                  <p>
+                  {readMore ? `${book.volumeInfo.description}` : `${book.volumeInfo.description.substring(0, 200)}...`}
+                    <button
+                      className="readmore"
+                      onClick={() => setReadMore(!readMore)}
+                    >
+                      {readMore ? 'Read Less' : 'Read More'}
+                    </button>
+                  </p>
+                  <div className="button-container">
+                    <button className="button book-button">
+                      About <GiBlackBook className="book-icon" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
         </section>
-      </div>
-      
-    </div>
+    </section>
   );
 };
 
