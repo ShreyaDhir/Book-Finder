@@ -4,8 +4,8 @@ import Modal from './Modal';
 const Books = ({ books }) => {
   const [readMore, setReadMore] = useState(false);
 
-  const [show, setShow] = useState(false);
-  const [bookItem, setItem] = useState();
+  // const [show, setShow] = useState(false);
+  // const [bookItem, setItem] = useState();
 
   return (
     <>
@@ -13,10 +13,6 @@ const Books = ({ books }) => {
         <article className="book-display" key={book.id}>
           <div className="book-content">
             <img
-              onClick={() => {
-                setShow(true);
-                setItem(book);
-              }}
               className="book-image"
               src={book.volumeInfo.imageLinks.smallThumbnail}
               alt={book.title}
@@ -38,10 +34,9 @@ const Books = ({ books }) => {
               <div className="button-container">
                 <button className="button book-button">
                   <Modal
-                    show={show}
-                    item={bookItem}
-                    onClose={() => setShow(false)}
-                    // key={book.id}
+                    key={book.id}
+                    title={book.volumeInfo.title}
+                    description={book.volumeInfo.description}
                   />
                 </button>
               </div>

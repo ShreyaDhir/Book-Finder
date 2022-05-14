@@ -54,7 +54,10 @@ const Search = () => {
         </button>
       </form>
       <section className="book-container">
-        <Books books={books}/>
+        <Books
+          books={books} 
+          
+        />
       </section>
     </section>
   );

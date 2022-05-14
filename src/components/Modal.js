@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 // import ModalContent from "./ModalContent";
 
-const Modal = ({ show, item, onClose }) => {
+const Modal = ({ title, description }) => {
   const [open, setOpen] = useState(false);
   // const { book } = props;
 
@@ -19,15 +19,10 @@ const Modal = ({ show, item, onClose }) => {
       <Button onClick={() => setOpen(true)}>About Books</Button>
       <Dialog open={open}>
         <DialogTitle>
-          title
-          {/* Title: {book.volumeInfo.title} */}
+          {title}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            desc
-            {console.log({item})}
-            {/* {book.volumeInfo.description} */}
-          </DialogContentText>
+          <DialogContentText>{description}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={() => setOpen(false)}>
