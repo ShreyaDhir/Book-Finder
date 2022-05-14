@@ -4,13 +4,19 @@ import Modal from './Modal';
 const Books = ({ books }) => {
   const [readMore, setReadMore] = useState(false);
 
+  const [show, setShow] = useState(false);
+  const [bookItem, setItem] = useState();
+
   return (
     <>
-      {
-        books.map((book) => (
+      {books.map((book) => (
         <article className="book-display" key={book.id}>
           <div className="book-content">
             <img
+              onClick={() => {
+                setShow(true);
+                setItem(book);
+              }}
               className="book-image"
               src={book.volumeInfo.imageLinks.smallThumbnail}
               alt={book.title}
@@ -31,7 +37,12 @@ const Books = ({ books }) => {
               </p>
               <div className="button-container">
                 <button className="button book-button">
-                  <Modal key={book.id} {...books} />
+                  <Modal
+                    show={show}
+                    item={bookItem}
+                    onClose={() => setShow(false)}
+                    // key={book.id}
+                  />
                 </button>
               </div>
             </div>
