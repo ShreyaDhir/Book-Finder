@@ -31,7 +31,7 @@ const Search = () => {
 
   const handleChange = (event) => {
     const search = event.target.value;
-    setSearch(search);
+    setSearch(search.toLowerCase());
   };
   
   const handleSubmit = (event) => {

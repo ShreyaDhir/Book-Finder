@@ -26,12 +26,26 @@ body {
   max-height: 100vh;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .justify-baseline {
+  justify-items: center;
+} */
+
 /* Navbar */
 
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: #a7d9ff;
+  /* background-color: #a7d9ff; */
   padding: 1.2rem;
 }
 

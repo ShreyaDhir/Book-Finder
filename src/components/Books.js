@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import Modal from './Modal';
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 const Books = ({ books }) => {
   const [readMore, setReadMore] = useState(false);
-
-  // const [show, setShow] = useState(false);
-  // const [bookItem, setItem] = useState();
 
   return (
     <>
@@ -21,9 +18,7 @@ const Books = ({ books }) => {
               <h4 className="book-title">{book.volumeInfo.title}</h4>
               <p className="book-authors">{`${book.volumeInfo.authors}`}</p>
               <p>
-                {readMore
-                  ? `${book.volumeInfo.description.slice(0, 200)}...`
-                  : `${book.volumeInfo.description}`}
+               {readMore ? `${book.volumeInfo.description}` : `${book.volumeInfo.description.substring(0, 200)}...`}
                 <button
                   className="readmore"
                   onClick={() => setReadMore(!readMore)}
@@ -51,6 +46,6 @@ const Books = ({ books }) => {
       ))}
     </>
   );
-}
+};
 
-export default Books
+export default Books;

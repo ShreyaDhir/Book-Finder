@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Link,
 } from "@mui/material";
 // import ModalContent from "./ModalContent";
 
@@ -24,7 +25,9 @@ const Modal = ({
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>About Books</Button>
+      <Button sx={{ width: 1 / 2 }} onClick={() => setOpen(true)}>
+        About Books
+      </Button>
       <Dialog open={open}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
@@ -38,9 +41,22 @@ const Modal = ({
             {authors} ({publishedDate})
           </DialogContentText>
           <div className="flex-row">
-            <DialogContentText sx={{ color: "text.main", mt: 2 }}>
-              {description}
-            </DialogContentText>
+            <div className="flex-column">
+              <DialogContentText sx={{ color: "text.main", mt: 2 }}>
+                {description}
+              </DialogContentText>
+              <Link
+                target="_blank"
+                sx={{
+                  mt: 8,
+                  fontFamily: "Roboto",
+                }}
+                href={bookUrl}
+                underline="none"
+              >
+                see Preview at Google Books
+              </Link>
+            </div>
             <div className="flex-column">
               <img src={image} alt={title} />
               <span className="page-count">{pageCount} pages</span>
