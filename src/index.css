@@ -193,3 +193,22 @@ body {
   color: var(--clr-red-dark);
   cursor: pointer;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-date {
+  font-size: 1.3rem;
+}
+
+.page-count {
+  margin-top: 0.5rem;
+  text-align: center;
+}

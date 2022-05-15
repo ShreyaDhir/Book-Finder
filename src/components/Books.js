@@ -37,6 +37,11 @@ const Books = ({ books }) => {
                     key={book.id}
                     title={book.volumeInfo.title}
                     description={book.volumeInfo.description}
+                    image={book.volumeInfo.imageLinks.smallThumbnail}
+                    bookUrl={book.volumeInfo.previewLink}
+                    authors={book.volumeInfo.authors}
+                    pageCount={book.volumeInfo.pageCount}
+                    publishedDate={book.volumeInfo.publishedDate}
                   />
                 </button>
               </div>
