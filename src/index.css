@@ -36,10 +36,10 @@ body {
   flex-direction: column;
 }
 
-/* .justify-baseline {
-  justify-items: center;
-} */
-
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 /* Navbar */
 
 .navbar {

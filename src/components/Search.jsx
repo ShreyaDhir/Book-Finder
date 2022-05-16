@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Modal from "./Modal";
+
 import { BiSearchAlt } from "react-icons/bi";
 import { GiBlackBook } from "react-icons/gi";
+
+// import Modal from "./Modal";
 import Books from "./Books";
 
 // import Landing from "./Landing";
@@ -55,8 +57,7 @@ const Search = () => {
       </form>
       <section className="book-container">
         <Books
-          books={books} 
-          
+          books={books}           
         />
       </section>
     </section>

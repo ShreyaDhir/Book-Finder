@@ -18,12 +18,12 @@ const Books = ({ books }) => {
               <h4 className="book-title">{book.volumeInfo.title}</h4>
               <p className="book-authors">{`${book.volumeInfo.authors}`}</p>
               <p>
-               {readMore ? `${book.volumeInfo.description}` : `${book.volumeInfo.description.substring(0, 200)}...`}
+               {readMore ? `${book.volumeInfo.description}`: ''}
                 <button
                   className="readmore"
                   onClick={() => setReadMore(!readMore)}
                 >
-                  {readMore ? "Read More" : "Read Less"}
+                  {readMore ? "Read Less" : "Read the Description"}
                 </button>
               </p>
               <div className="button-container">

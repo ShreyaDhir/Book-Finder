@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { GiBookshelf } from 'react-icons/gi';
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Tabs, Tab, Typography, Box } from "@mui/material";
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import Search from "./Search";
 import BookShelf from "../pages/BookShelf";
 import MyBooks from "../pages/MyBooks";
@@ -15,12 +16,12 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box p={3}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -28,11 +29,31 @@ function TabPanel(props) {
   );
 }
 
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
+};
+
 function a11yProps(index) {
   return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    id: `nav-tab-${index}`,
+    "aria-controls": `nav-tabpanel-${index}`
   };
+}
+
+function LinkTab(props) {
+  console.log(props);
+  return (
+    <Tab
+      component={Link}
+      //   onClick={(event) => {
+      //     event.preventDefault();
+      //   }}
+      to={props.pathname}
+      {...props}
+    />
+  );
 }
 
 const Header = (props) => {
@@ -45,48 +66,48 @@ const Header = (props) => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <div className="justify-baseline flex-row">
+    <>
+      {/* <AppBar position="static"> */}
+      <Box
+        sx={{
+          width: "100%",
+          borderBottom: 1,
+          borderColor: "divider",
+        }}
+      >
+        <div className="flex-wrap">
           <div className="navbar logo" href="#home">
             <GiBookshelf />
           </div>
           <Tabs
-            sx={{ mt: 2,
-             }}
+            variant="fullWidth"
             value={value}
             onChange={handleChange}
-            aria-label="basic tabs example"
+            aria-label="nav tabs example"
           >
-            <Tab label="Search" {...a11yProps(0)} />
-            <Tab label="Book Shelf" {...a11yProps(1)} />
-            <Tab label="My Books" {...a11yProps(2)} />
+            <LinkTab
+              sx={{ mt: 2, ml: 2, mr: 2, p: 0, color: "#1a237e" }}
+              label="Search"
+              pathname="/"
+              {...a11yProps(0)}
+            />
+            <LinkTab
+              sx={{ mt: 2, ml: 2, mr: 2, p: 0, color: "#1a237e" }}
+              label="Book Shelf"
+              pathname="/book-shelf"
+              {...a11yProps(0)}
+            />
+            <LinkTab
+              sx={{ mt: 2, ml: 2, mr: 2, p: 0, color: "#1a237e" }}
+              label="My Books"
+              pathname="/my-books"
+              {...a11yProps(0)}
+            />
           </Tabs>
         </div>
       </Box>
-      <TabPanel value={value} index={0}>
-        <Search />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <BookShelf />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <MyBooks />
-      </TabPanel>
-    </Box>
-    // <div className="navbar">
-    //     <div className="logo" href="#home">
-    //       <GiBookshelf />
-    //     </div>
-    //     <div className="profile">
-    //       <ion-icon name="apps-outline"></ion-icon>
-    //       <div className="login">
-    //         Signed in as:
-    //           <a href="#login">User Signed In</a>
-    //       </div>
-    //     </div>
-    //   </div>
+    </>
   );
-};
+}
 
 export default Header;
